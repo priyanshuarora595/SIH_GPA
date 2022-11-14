@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% load mathfilters %}
+{% load myfilters %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}Register{% endblock title %}
+    {% block head %}
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        window.onload = function(e){ 
+            enable_button(); 
+        }
+    </script>
+    {% endblock head %}
+</head>
+<body >
+    {% block body %}
+            <div class="form-holder">
+                <div class="form-content" >
+                    <div class="form-items">
+                        <h3>WELCOME USERS</h3>
+                        
+                        <div class="page-links">
+                            <a href="login">Login</a><a href="register" class="active">Register</a>
+                        </div>
+                        <form method="POST" action="" id="my_form">
+                            {% csrf_token %}
+                            <div id="prompt1"></div>
+                            <div id="prompt2"></div>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="E-mail Address" required>
+                            <div class="form-button">
+                                <p id="pass1_info" > <b>Password:</b> select any 3 images and remember their order! these images will be shuffled and become blur after your confirmation</p>
+                                <p id="info" ></p>
+                                <p id="time"></div>
+                                <div class="grid-container" id='images' >
+                                    {% include 'grid.html' %}
+                                </div>
+
+                                <div class="form-button">
+                                    <button style="margin: 16px 16px ;" id="register_btn" type="submit" class="ibtn" hidden>Register</button>
+                                    <button style="margin: 16 px 16px;" id="blur_btn" type="button"  class="ibtn" hidden onclick="blur_img()">blur</button>
+                                    <button style="margin: 10px;" id="reload_image" type="button" class="ibtn"  onclick="func1()">Change-image</button>
+                                    <button style="margin: 10px;" id="confirm_image" type="button" class="ibtn"  onclick="check_email(event)">confirm-image</button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script>
+        var count_src = "{% get_static_prefix %}count/";
+    </script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/our_js.js' %}"></script>
+    <script src="{% static 'js/common_js.js' %}"></script>
+    <script src="{% static 'js/register.js' %}"></script>
+
+
+    {% endblock body %}
+</body>
+</html>
